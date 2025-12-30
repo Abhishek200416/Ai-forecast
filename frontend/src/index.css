@@ -290,3 +290,15 @@ code {
     border-bottom-color: inherit;
   }
 }
+
+/* Hide Emergent badge/watermark */
+iframe[src*="emergent"],
+div[class*="emergent-badge"],
+div[class*="powered-by"],
+a[href*="emergent.sh"][style*="position: fixed"],
+div[style*="position: fixed"][style*="bottom"],
+div[style*="position: fixed"][style*="right"][style*="z-index"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
