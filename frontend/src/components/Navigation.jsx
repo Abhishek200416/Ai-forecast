@@ -1,9 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Wind, Activity, Info } from 'lucide-react';
+import { Wind, Activity, Info, Sun, Moon } from 'lucide-react';
+import { useTheme } from '@/contexts/ThemeContext';
+import { Button } from '@/components/ui/button';
 
 export const Navigation = () => {
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   const navItems = [
     { path: '/', label: 'Home', icon: Wind },
@@ -34,8 +37,8 @@ export const Navigation = () => {
             </div>
           </Link>
 
-          {/* Navigation Links */}
-          <div className="flex items-center space-x-1 sm:space-x-2">
+          {/* Navigation Links & Theme Toggle */}
+          <div className="flex items-center space-x-2 sm:space-x-3">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
@@ -68,6 +71,26 @@ export const Navigation = () => {
                 </Link>
               );
             })}
+            
+            {/* Theme Toggle */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="relative w-9 h-9 rounded-lg hover:bg-primary/10 transition-colors"
+            >
+              <motion.div
+                initial={false}
+                animate={{ rotate: theme === 'dark' ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {theme === 'light' ? (
+                  <Moon className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
+                ) : (
+                  <Sun className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
+                )}
+              </motion.div>
+            </Button>
           </div>
         </div>
       </div>
