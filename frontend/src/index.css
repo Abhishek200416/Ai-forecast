@@ -145,6 +145,17 @@ code {
   }
   body {
     @apply bg-background text-foreground;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  body:not(.dark) {
+    background-image: 
+      radial-gradient(ellipse 800px 600px at 50% -20%, hsl(175 70% 85% / 0.3), transparent),
+      radial-gradient(ellipse 600px 800px at 100% 100%, hsl(195 65% 85% / 0.2), transparent);
+    background-attachment: fixed;
+  }
+  
+  .dark body {
     background-image: 
       radial-gradient(ellipse 800px 600px at 50% -20%, hsl(175 80% 15% / 0.15), transparent),
       radial-gradient(ellipse 600px 800px at 100% 100%, hsl(195 70% 15% / 0.1), transparent);
